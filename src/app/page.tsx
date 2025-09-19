@@ -1,4 +1,5 @@
 import Scene from "./components/Scene"
+import AboutMe from "./components/AboutMe";
 import Link from "next/link";
 
 export default function Home() {
@@ -16,6 +17,7 @@ export default function Home() {
           <li className="hover:animate-wiggle"><Link href="/blogs">Blogs</Link></li>
         </ul>
       </div>
+      <AboutMe/>
     </div>
   );
 }
