@@ -1,10 +1,14 @@
 import styles from './page.module.css'
+import Link from 'next/link'
 
 function Blogs(){
     return (
         <>
-            <div className='grid min-h-screen items-center justify-items-center'>
-                <h1>Hi</h1>
+            <div className='grid min-h-screen p-1'>
+                <div className="">
+                    <Link className="underline-hover" href="/"> Back Home</Link>
+                </div>
+
             </div>
         </>
     )

@@ -1,5 +1,6 @@
 import Scene from "./components/Scene"
 import AboutMe from "./components/AboutMe";
+import Projects from "./components/Projects";
 import Link from "next/link";
 
 export default function Home() {
@@ -12,12 +13,13 @@ export default function Home() {
           <p>Description</p>
         </div>
         <ul>
-          <li>About</li>
-          <li>Projects</li>
-          <li className="hover:animate-wiggle"><Link href="/blogs">Blogs</Link></li>
+          <li><Link className="underline-hover" href="#about-me">About</Link></li>
+          <li><Link className="underline-hover" href="#projects">Projects</Link></li>
+          <li className="hover:animate-wiggle"><Link className="underline-hover" href="/blogs">Blogs</Link></li>
         </ul>
       </div>
       <AboutMe/>
+      <Projects/>
     </div>
   );
 }
