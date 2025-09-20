@@ -1,24 +1,34 @@
 'use client'
 
-import { useEffect } from "react"
+import { useContext, useEffect } from "react"
 import { useGLTF, Center } from "@react-three/drei"
 import { useDrag } from "@use-gesture/react"
 import { a, useSpring } from "@react-spring/three"
 import * as THREE from 'three'
 
+import LightContext from "../contexts/LightContext"
+import { LightContextType } from "../contexts/LightContext"
+
 export default function Bulb() {
 
-    const { scene } = useGLTF("/incandescent_light_bulb.glb")
+    const {value, setValue} = useContext<LightContextType>(LightContext)
+    const { scene } = useGLTF("/light_bulb.glb")
+
+    console.log(scene);
 
     useEffect(() => {
         scene.traverse((child) => {
           if (child instanceof THREE.Mesh) {
             const mat = child.material as THREE.MeshStandardMaterial
-            mat.emissive = new THREE.Color("#ffcc66")
-            mat.emissiveIntensity = 0.05
+            if(value){
+                mat.emissive = new THREE.Color("#ffcc66");
+                mat.emissiveIntensity = 10;
+            } else {
+                mat.emissiveIntensity = 0;
+            }
           }
         })
-    }, [scene]);
+    }, [value, scene]);
 
     const [spring, api] = useSpring(() => ({
         rotX: 0,
@@ -32,17 +42,23 @@ export default function Bulb() {
     })
 
     return (
-        <a.group {...bind()} rotation-x={spring.rotX} rotation-y={spring.rotY} rotation-z={spring.rotZ} position={[-20, 0, 0]}>
+        <a.group 
+            {...bind()} 
+            onClick={() => setValue ? setValue((prev) => !prev) : console.log("setValue does not exist")}
+            rotation-x={spring.rotX} 
+            rotation-y={spring.rotY} 
+            rotation-z={spring.rotZ} 
+            position={[-20, 0, 0]}>
             <Center>
                 <primitive 
                     object={scene} 
-                    scale={150}
+                    scale={30}
                 />
                 <pointLight 
                     castShadow 
-                    intensity={10} 
-                    distance={1000} 
-                    color="white" />
+                    intensity={value ? 1000: 0} 
+                    distance={10000} 
+                    color="#ffe991" />
             </Center>
         </a.group>
     )
