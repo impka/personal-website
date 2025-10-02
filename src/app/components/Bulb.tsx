@@ -9,12 +9,9 @@ import * as THREE from 'three'
 import LightContext from "../contexts/LightContext"
 import { LightContextType } from "../contexts/LightContext"
 
-export default function Bulb() {
-
+export default function Bulb({onLoaded}: {onLoaded: () => void}) {
     const {value, setValue} = useContext<LightContextType>(LightContext)
     const { scene } = useGLTF("/light_bulb.glb")
-
-    console.log(scene);
 
     useEffect(() => {
         scene.traverse((child) => {
@@ -29,6 +26,12 @@ export default function Bulb() {
           }
         })
     }, [value, scene]);
+
+    useEffect(() => {
+        if (scene && onLoaded) {
+          onLoaded(); // notify parent that loading is done
+        }
+    }, [scene, onLoaded]);
 
     const [spring, api] = useSpring(() => ({
         rotX: 0,
@@ -56,8 +59,8 @@ export default function Bulb() {
                 />
                 <pointLight 
                     castShadow 
-                    intensity={value ? 1000: 0} 
-                    distance={10000} 
+                    intensity={value ? 5000: 0} 
+                    distance={1000} 
                     color="#ffe991" />
             </Center>
         </a.group>
