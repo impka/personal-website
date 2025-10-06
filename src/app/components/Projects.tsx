@@ -2,7 +2,7 @@ import Image from "next/image"
 
 function Projects(){
     return (
-        <div id="projects" className="h-screen place-items-center">
+        <div id="projects" className="h-screen place-items-center bg-transparent">
             <Image 
             src="/next.svg" 
             alt="picture of me" 

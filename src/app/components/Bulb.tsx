@@ -51,7 +51,7 @@ export default function Bulb({onLoaded}: {onLoaded: () => void}) {
             rotation-x={spring.rotX} 
             rotation-y={spring.rotY} 
             rotation-z={spring.rotZ} 
-            position={[-20, 0, 0]}>
+            position={[-20, 10, 20]}>
             <Center>
                 <primitive 
                     object={scene} 

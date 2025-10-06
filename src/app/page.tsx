@@ -29,31 +29,33 @@ export default function Home() {
 
   return (
     <LightContext.Provider value={{value: on, setValue: setOn}}>
-      <div className= "bg-white dark:bg-black transition-colors duration-500 ease-in-out relative text-black dark:text-white">
+      <div className= "bg-[#E0E0E0] dark:bg-black transition-colors duration-500 ease-in-out relative text-black dark:text-white">
         
         { loading && (
-          <div className="absolute inset-0 flex items-center justify-center z-50 bg-blue-500">
+          <div className="fixed h-screen inset-0 flex items-center justify-center z-50 bg-blue-500">
             <Loading />
           </div>
         )}
-        <Scene onLoaded={() => setLoading(false)}/>
-        <div className="flex flex-row items-center justify-center absolute top-40 right-60">
-          <div className="pr-2">
-            <h1 className="text-4xl">Ethan Zhou</h1>
-            <div className="flex flex-row items-center justify-center gap-1">
-              <a href="https://github.com/impka" target="_blank" rel="noopener noreferrer">
-                <FaGithub className="w-4 h-4 text-black dark:text-white hover:text-gray-500 transition" />
-              </a>
-              <a href="https://github.com/impka" target="_blank" rel="noopener noreferrer">
-                <IoMdMail className="w-4 h-4 text-black dark:text-white hover:text-gray-500 transition" />
-              </a>
+        <div className="h-screen ">
+          <Scene onLoaded={() => setLoading(false)}/>
+          <div className="flex flex-row items-center justify-center absolute top-[40vh] right-[60vh]">
+            <div className="pr-[2vh]">
+              <h1 className="text-[7vh]">Ethan Zhou</h1>
+              <div className="flex flex-row items-center justify-center gap-[1vh]">
+                <a href="https://github.com/impka" target="_blank" rel="noopener noreferrer">
+                  <FaGithub className="w-[4vh] h-[4vh] text-black dark:text-white hover:text-gray-500 transition" />
+                </a>
+                <a href="https://github.com/impka" target="_blank" rel="noopener noreferrer">
+                  <IoMdMail className="w-[4vh] h-[4vh] text-black dark:text-white hover:text-gray-500 transition" />
+                </a>
+              </div>
             </div>
+            <ul className="text-[3vh]">
+              <li><Link className="underline-hover" href="#about-me">About</Link></li>
+              <li><Link className="underline-hover" href="#projects">Projects</Link></li>
+              <li><Link className="underline-hover hover:animate-wiggle" href="/blogs">Blogs</Link></li>
+            </ul>
           </div>
-          <ul>
-            <li><Link className="underline-hover" href="#about-me">About</Link></li>
-            <li><Link className="underline-hover" href="#projects">Projects</Link></li>
-            <li><Link className="underline-hover hover:animate-wiggle" href="/blogs">Blogs</Link></li>
-          </ul>
         </div>
         <AboutMe/>
         <Projects/>
