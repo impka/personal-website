@@ -3,6 +3,7 @@
 import { FaGithub, FaLinkedin, FaMailBulk } from "react-icons/fa";
 
 import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Scene from "./components/Scene"
 import AboutMe from "./components/AboutMe";
 import Projects from "./components/Projects";
@@ -30,12 +31,19 @@ export default function Home() {
   return (
     <LightContext.Provider value={{value: on, setValue: setOn}}>
       <div className= "bg-[#E0E0E0] dark:bg-black transition-colors duration-500 ease-in-out relative text-black dark:text-white">
-        
-        { loading && (
-          <div className="fixed h-screen inset-0 flex items-center justify-center z-50 bg-blue-500">
-            <Loading />
-          </div>
-        )}
+        <AnimatePresence>
+          { loading && (
+            <motion.div 
+              className="fixed h-screen inset-0 flex items-center justify-center z-50 bg-[#000000]"
+              initial={{ opacity: 1 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <Loading />
+            </motion.div>
+          )}
+        </AnimatePresence>
         <div className="h-screen ">
           <Scene onLoaded={() => setLoading(false)}/>
           <div className="flex flex-row items-center justify-center absolute top-[40vh] right-[60vh]">
