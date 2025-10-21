@@ -64,7 +64,7 @@ export default function Home() {
             <ul className="text-[3vh]">
               <li><Link className="underline-hover" href="#about-me">About</Link></li>
               <li><Link className="underline-hover" href="#projects">Projects</Link></li>
-              <li><Link className="underline-hover hover:animate-wiggle" href="/blogs">Blogs</Link></li>
+              <li><a className="underline-hover hover:animate-wiggle" href="/blogs">Blogs</a></li>
             </ul>
           </div>
         </div>
