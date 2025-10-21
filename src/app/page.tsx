@@ -1,6 +1,6 @@
 "use client"
 
-import { FaGithub, FaLinkedin, FaMailBulk } from "react-icons/fa";
+import { FaGithub, FaSpotify } from "react-icons/fa";
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -53,8 +53,11 @@ export default function Home() {
                 <a href="https://github.com/impka" target="_blank" rel="noopener noreferrer">
                   <FaGithub className="w-[4vh] h-[4vh] text-black dark:text-white hover:text-gray-500 transition" />
                 </a>
-                <a href="https://github.com/impka" target="_blank" rel="noopener noreferrer">
+                <a href="mailto:ethanzhou008@gmail.com" target="_blank" rel="noopener noreferrer">
                   <IoMdMail className="w-[4vh] h-[4vh] text-black dark:text-white hover:text-gray-500 transition" />
+                </a>
+                <a href="https://open.spotify.com/user/eu9hi6okg9tt30m94zbmu9nmi" target="_blank" rel="noopener noreferrer">
+                  <FaSpotify className="w-[4vh] h-[4vh] text-black dark:text-white hover:text-gray-500 transition" />
                 </a>
               </div>
             </div>
