@@ -13,7 +13,7 @@ const noise3D = createNoise3D();
 
 function WavyPlane() {
   const meshRef = useRef<THREE.LineSegments | null>(null)
-  const {value, setValue} = useContext<LightContextType>(LightContext)
+  const {value} = useContext<LightContextType>(LightContext)
   // plane geometry
   const geometryRef = useRef<THREE.PlaneGeometry | null>(null)
   const clock = useRef(new THREE.Clock())

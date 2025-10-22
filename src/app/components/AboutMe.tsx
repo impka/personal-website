@@ -12,14 +12,10 @@ function AboutMe(){
                     className="object-cover"
                     />
                 </div>
-                <div className="w-[35%]">
+                <div className="w-[35%] prose prose-lg prose-slate dark:prose-invert">
                     <h1 className="text-xl font-bold pl-2">Hi!</h1>
                     <p className="text-lg">
-                    I'm Ethan, a dude who likes doing cool stuff. 
-                    My interests are pretty broad, since I can get pretty 
-                    invested in things relatively quickly, but in general, 
-                    my primary motivation is making the world a more enjoyable 
-                    place to exist in.
+                    {"I'm Ethan, a dude who likes doing cool stuff. My interests are pretty broad, since I can get pretty invested in things relatively quickly, but in general, my primary motivation is making the world a more enjoyable place to exist in."}
                     </p>
                 </div>
             </div>

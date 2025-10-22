@@ -19,6 +19,10 @@ const eslintConfig = [
       "build/**",
       "next-env.d.ts",
     ],
+    // silencing <a> tag thing since css not loading properly with 3js
+    "rules": {
+      "@next/next/no-html-link-for-pages": "off"
+    }
   },
 ];
 

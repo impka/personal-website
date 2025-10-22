@@ -40,7 +40,7 @@ export default function Bulb({onLoaded}: {onLoaded: () => void}) {
         config: { mass: 1, tension: 170, friction: 26 },
     }))
 
-    const bind = useDrag(({ movement: [x, y] }) => {
+    const bind = useDrag(({ movement: [x, _y] }) => {
         api.start({ rotX: 0, rotY: x / 100, rotZ: 0 })
     })
 

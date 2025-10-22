@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, PanInfo } from "framer-motion";
 import { useState } from "react";
 
 const projects = [
@@ -38,7 +38,8 @@ const projects = [
 function DragCarousel() {
     const [activeIndex, setActiveIndex] = useState(0);
   
-    const handleDragEnd = (_: any, info: any) => {
+    const handleDragEnd = (_: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+      console.log(typeof _, typeof info);
       const offset = info.offset.y;
       const threshold = 100; // drag distance required to change slides
   
@@ -92,12 +93,13 @@ function DragCarousel() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.3 }}
+              className="prose prose-lg prose-slate dark:prose-invert"
             >
-              <h2 className="text-3xl font-bold mb-2">
+              <h2>
                 {projects[activeIndex].title}
               </h2>
-              <p className="text-gray-400">{projects[activeIndex].desc}</p>
-              <a href={projects[activeIndex].link} className="hover:text-gray-500 transition duration-200 ease-in-out">Link to GitHub</a>
+              <p>{projects[activeIndex].desc}</p>
+              <a href={projects[activeIndex].link}>Link to GitHub</a>
             </motion.div>
           </AnimatePresence>
         </div>
