@@ -27,9 +27,6 @@ jobs:
       - name: Build Next.js app
         run: npm run build
 
-      - name: Export static files
-        run: npx next export
-
       - name: Add CNAME (custom domain)
         run: echo 'impkar.com' > ./out/CNAME
 
