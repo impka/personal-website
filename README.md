@@ -7,6 +7,7 @@ Hi, this is a [Next.js](https://nextjs.org) personal website bootstrapped with [
 * Next.js
 * Typescript
 * React Three Fiber & Drei
+* A bunch of other libraries listed in package.json
 
 ## Planned features 
 
