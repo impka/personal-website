@@ -3,7 +3,7 @@ title: "Ignorance and Centrism, a Problematic Pairing"
 categories: "politics"
 ---
 
-![centrist clown case in point](https://www.svg.com/img/gallery/the-shady-side-of-xqc/intro-1605808476.jpg)
+![centrist clown case in point](/blog_images/centrism.jpg)
 
 # Ignorance and Centrism, a Problematic Pairing
 There is a category of quotes that draws awareness to the danger of extremism, which usually involves an analogy about how life isn't black and white and how it's a spectrum of grays or something similar. In general, this is fine. After all, one should understand that simple narratives of righteousness should be treated with suspicion due to the ulterior motives of others who seek to portray themselves in the best light possible. However, there are some cases where people try to view and fit everything in life through this impartial framing, where everything is a shade of gray and nothing is ever clear.  Often, this worship of centrism is accompanied by a lack of interest in learning the facts on the ground, with the primary driver of opinion being the assumption that both sides are equally flawed, and as a result, acting with blind and unwavering impartiality is the most noble path.

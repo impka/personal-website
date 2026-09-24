@@ -3,7 +3,7 @@ title: "Framework 13, a Critical 2 Year Review"
 categories: "review"
 ---
 
-![pic of Framework 13 laptop](https://images.prismic.io/frameworkmarketplace/ZlZTe6WtHYXtT3zd_fw13-laptop-marigold-hero-blog-wide.jpg?auto=format,compress?auto=compress,format)
+![pic of Framework 13 laptop](/blog_images/framework-13.jpg)
 
 
 # Framework 13, a Critical 2 Year Review

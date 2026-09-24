@@ -1,5 +1,10 @@
 import Link from 'next/link'
+import type { Metadata } from 'next'
 import { getBlogs } from '../lib/blog'
+
+export const metadata: Metadata = {
+    title: 'Blogs | impkar',
+}
 
 function Blogs(){
     const blogs = getBlogs()
@@ -13,11 +18,11 @@ function Blogs(){
                 <div>
                     <ul className='flex flex-col gap-3 px-3 text-xl'>
                         {blogs.map((blog) => (
-                            <Link key={blog.id} href={`/blogs/${blog.id}`}>
-                                <li className='bg-white p-2 rounded-lg shadow-md transition duration-250 ease-in-out hover:bg-[#F0F0F0] hover:scale-101'>
-                                        {blog.title}
-                                </li>
-                            </Link>
+                            <li key={blog.id}>
+                                <Link href={`/blogs/${blog.id}`} className='block bg-white p-2 rounded-lg shadow-md transition duration-250 ease-in-out hover:bg-[#F0F0F0] hover:scale-101'>
+                                    {blog.title}
+                                </Link>
+                            </li>
                         ))}
                     </ul>
                 </div>

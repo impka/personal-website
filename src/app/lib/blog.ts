@@ -8,7 +8,7 @@ import type Blog from "@/types/blog";
 const blogsDir = path.join(process.cwd(), "content/blogs")
 
 export function getBlogs() {
-    const blogs = fs.readdirSync(blogsDir);
+    const blogs = fs.readdirSync(blogsDir).filter((name) => name.endsWith(".md"));
 
     return blogs.map((blogname) => {
         const filePath = path.join(blogsDir, blogname);
@@ -18,9 +18,9 @@ export function getBlogs() {
         return {
             id: blogname.replace(/\.md$/, ""),
             title: data.title as string,
-            date: data.date as string,
+            date: data.date as string | undefined,
         };
-    });
+    }).sort((a, b) => (b.date ?? "").localeCompare(a.date ?? ""));
 }
 
 export async function getBlogByID(id: string): Promise<Blog> {
@@ -36,7 +36,7 @@ export async function getBlogByID(id: string): Promise<Blog> {
     return {
         id,
         title: data.title as string,
-        date: data.date as string,
+        date: data.date as string | undefined,
         contentHtml: processedContent.toString()
     }
 }

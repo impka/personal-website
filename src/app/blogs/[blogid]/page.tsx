@@ -1,8 +1,9 @@
 import { getBlogByID, getBlogs } from "../../lib/blog";
 import Link from "next/link";
+import type { Metadata } from "next";
 
 interface BlogPageProps{
-    params: { blogid: string }
+    params: Promise<{ blogid: string }>
 }
 
 export async function generateStaticParams(){
@@ -10,9 +11,15 @@ export async function generateStaticParams(){
     return blogs.map((blog) => ({blogid: blog.id}))
 }
 
+export async function generateMetadata({ params }: BlogPageProps): Promise<Metadata> {
+    const { blogid } = await params;
+    const blog = await getBlogByID(blogid);
+    return { title: `${blog.title} | impkar` };
+}
+
 export default async function Blog({ params }: BlogPageProps){
-    params = await params;
-    const blog = await getBlogByID(params.blogid);
+    const { blogid } = await params;
+    const blog = await getBlogByID(blogid);
 
 
     return (
