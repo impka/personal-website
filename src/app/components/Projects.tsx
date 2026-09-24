@@ -39,7 +39,6 @@ function DragCarousel() {
     const [activeIndex, setActiveIndex] = useState(0);
   
     const handleDragEnd = (_: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
-      console.log(typeof _, typeof info);
       const offset = info.offset.y;
       const threshold = 100; // drag distance required to change slides
   

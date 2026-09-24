@@ -12,7 +12,7 @@ import { createNoise3D } from "simplex-noise";
 const noise3D = createNoise3D();
 
 function WavyPlane() {
-  const meshRef = useRef<THREE.LineSegments | null>(null)
+  const meshRef = useRef<THREE.Mesh | null>(null)
   const {value} = useContext<LightContextType>(LightContext)
   // plane geometry
   const geometryRef = useRef<THREE.PlaneGeometry | null>(null)
@@ -60,7 +60,7 @@ function WavyPlane() {
 
 
 export default function Scene({onLoaded}: { onLoaded: ()=>void}) {
-  const {value, setValue} = useContext<LightContextType>(LightContext)
+  const {value} = useContext<LightContextType>(LightContext)
   return (
     <div className="h-[150vh] relative z-0">
       <Canvas shadows camera={{position: [0, 0, 100], fov:50}}>

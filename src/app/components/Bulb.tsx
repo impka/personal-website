@@ -34,23 +34,19 @@ export default function Bulb({onLoaded}: {onLoaded: () => void}) {
     }, [scene, onLoaded]);
 
     const [spring, api] = useSpring(() => ({
-        rotX: 0,
         rotY: 0,
-        rotZ: 0,
         config: { mass: 1, tension: 170, friction: 26 },
     }))
 
-    const bind = useDrag(({ movement: [x, _y] }) => {
-        api.start({ rotX: 0, rotY: x / 100, rotZ: 0 })
+    const bind = useDrag(({ movement: [x] }) => {
+        api.start({ rotY: x / 100 })
     })
 
     return (
         <a.group 
             {...bind()} 
-            onClick={() => setValue ? setValue((prev) => !prev) : console.log("setValue does not exist")}
-            rotation-x={spring.rotX} 
+            onClick={() => setValue((prev) => !prev)}
             rotation-y={spring.rotY} 
-            rotation-z={spring.rotZ} 
             position={[-20, 10, 20]}>
             <Center>
                 <primitive 
