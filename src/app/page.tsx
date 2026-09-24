@@ -53,6 +53,12 @@ export default function Home() {
           )}
         </AnimatePresence>
         <div className="h-screen ">
+          <button
+            onClick={() => setOn((prev) => !prev)}
+            className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-10 focus:px-3 focus:py-1 focus:rounded focus:bg-white focus:text-black"
+          >
+            Toggle lights
+          </button>
           <Scene onLoaded={handleLoaded}/>
           <div className="flex flex-row items-center justify-center absolute top-[40vh] right-[60vh]">
             <div className="pr-[2vh]">
