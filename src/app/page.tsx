@@ -15,16 +15,17 @@ import { IoMdMail } from "react-icons/io";
 
 export default function Home() {
 
-  const [on, setOn] = useState(false);
+  // the theme script in layout.tsx has already applied the saved choice
+  const [on, setOn] = useState(
+    () => typeof document !== "undefined" && !document.documentElement.classList.contains("dark")
+  );
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const root = document.documentElement;
-    if (!on) {
-      root.classList.add("dark");
-    } else {
-      root.classList.remove("dark");
-    }
+    document.documentElement.classList.toggle("dark", !on);
+    try {
+      localStorage.setItem("light", on ? "on" : "off");
+    } catch {}
   }, [on]);
 
 

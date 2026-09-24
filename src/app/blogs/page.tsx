@@ -19,7 +19,7 @@ function Blogs(){
                     <ul className='flex flex-col gap-3 px-3 text-xl'>
                         {blogs.map((blog) => (
                             <li key={blog.id}>
-                                <Link href={`/blogs/${blog.id}`} className='block bg-white p-2 rounded-lg shadow-md transition duration-250 ease-in-out hover:bg-[#F0F0F0] hover:scale-101'>
+                                <Link href={`/blogs/${blog.id}`} className='block bg-white dark:bg-[#111] p-2 rounded-lg shadow-md transition duration-250 ease-in-out hover:bg-[#F0F0F0] dark:hover:bg-[#1a1a1a] hover:scale-101'>
                                     {blog.title}
                                 </Link>
                             </li>
