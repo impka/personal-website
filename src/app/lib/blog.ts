@@ -5,38 +5,38 @@ import { remark } from "remark";
 import html from "remark-html";
 import type Blog from "@/types/blog";
 
-const blogsDir = path.join(process.cwd(), "content/blogs")
+const blogsDir = path.join(process.cwd(), "content/blogs");
 
 export function getBlogs() {
-    const blogs = fs.readdirSync(blogsDir).filter((name) => name.endsWith(".md"));
+  const blogs = fs.readdirSync(blogsDir).filter((name) => name.endsWith(".md"));
 
-    return blogs.map((blogname) => {
-        const filePath = path.join(blogsDir, blogname);
-        const fileContent = fs.readFileSync(filePath, "utf8");
-        const { data } = matter(fileContent)
+  return blogs
+    .map((blogname) => {
+      const filePath = path.join(blogsDir, blogname);
+      const fileContent = fs.readFileSync(filePath, "utf8");
+      const { data } = matter(fileContent);
 
-        return {
-            id: blogname.replace(/\.md$/, ""),
-            title: data.title as string,
-            date: data.date as string | undefined,
-        };
-    }).sort((a, b) => (b.date ?? "").localeCompare(a.date ?? ""));
+      return {
+        id: blogname.replace(/\.md$/, ""),
+        title: data.title as string,
+        date: data.date as string | undefined,
+      };
+    })
+    .sort((a, b) => (b.date ?? "").localeCompare(a.date ?? ""));
 }
 
 export async function getBlogByID(id: string): Promise<Blog> {
-    const filePath = path.join(blogsDir, `${id}.md`);
-    const fileContent = fs.readFileSync(filePath, "utf8");
+  const filePath = path.join(blogsDir, `${id}.md`);
+  const fileContent = fs.readFileSync(filePath, "utf8");
 
-    const { data, content } = matter(fileContent);
+  const { data, content } = matter(fileContent);
 
-    const processedContent = await remark()
-        .use(html)
-        .process(content);
-    
-    return {
-        id,
-        title: data.title as string,
-        date: data.date as string | undefined,
-        contentHtml: processedContent.toString()
-    }
+  const processedContent = await remark().use(html).process(content);
+
+  return {
+    id,
+    title: data.title as string,
+    date: data.date as string | undefined,
+    contentHtml: processedContent.toString(),
+  };
 }

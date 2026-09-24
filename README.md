@@ -4,18 +4,18 @@ Hi, this is a [Next.js](https://nextjs.org) personal website bootstrapped with [
 
 ## Stuff Used
 
-* Next.js
-* Typescript
-* React Three Fiber & Drei
-* A bunch of other libraries listed in package.json
+- Next.js
+- Typescript
+- React Three Fiber & Drei
+- A bunch of other libraries listed in package.json
 
-## Planned features 
+## Planned features
 
-* Radial project selection 
-* Blogs sorted by category
-* More blogs!!!!
+- Radial project selection
+- Blogs sorted by category
+- More blogs!!!!
 
 ## Attributions
 
-* Bulb 3d Model: "light bulb" (https://skfb.ly/oQJvx) by White_sniper is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
-* Loading SVG: https://www.svgbackgrounds.com/elements/animated-svg-preloaders/ 
+- Bulb 3d Model: "light bulb" (https://skfb.ly/oQJvx) by White_sniper is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+- Loading SVG: https://www.svgbackgrounds.com/elements/animated-svg-preloaders/

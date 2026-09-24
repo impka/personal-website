@@ -23,8 +23,8 @@ const eslintConfig = [
   {
     // silencing <a> tag thing since css not loading properly with 3js
     rules: {
-      "@next/next/no-html-link-for-pages": "off"
-    }
+      "@next/next/no-html-link-for-pages": "off",
+    },
   },
 ];
 

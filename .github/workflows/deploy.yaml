@@ -3,10 +3,10 @@ name: Deploy Next.js to GitHub Pages
 on:
   push:
     branches:
-      - main  
+      - main
 
 permissions:
-  contents: write  
+  contents: write
 
 jobs:
   build:

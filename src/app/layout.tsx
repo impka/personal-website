@@ -16,8 +16,8 @@ export const metadata: Metadata = {
   title: "impkar",
   description: "Ethan's Personal Website :D",
   icons: {
-    icon: "/xqcbleh.ico"
-  }
+    icon: "/xqcbleh.ico",
+  },
 };
 
 // runs before paint so pages don't flash the wrong theme; dark unless the bulb was left on

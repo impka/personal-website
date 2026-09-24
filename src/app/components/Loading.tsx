@@ -1,16 +1,14 @@
-import Image from "next/image"
+import Image from "next/image";
 
-function Loading(){
-    return (
-        <div className="grid place-items-center">
-            <h1><i>Loading</i></h1>
-            <Image 
-                src="/loading.svg" 
-                alt="" 
-                width={50} 
-                height={50}/>
-        </div>
-    )
+function Loading() {
+  return (
+    <div className="grid place-items-center">
+      <h1>
+        <i>Loading</i>
+      </h1>
+      <Image src="/loading.svg" alt="" width={50} height={50} />
+    </div>
+  );
 }
 
-export default Loading
+export default Loading;
