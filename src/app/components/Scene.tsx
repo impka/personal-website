@@ -16,10 +16,13 @@ function WavyPlane() {
   const { value } = useContext<LightContextType>(LightContext);
   // plane geometry
   const geometryRef = useRef<THREE.PlaneGeometry | null>(null);
+  // own elapsed time: R3F resets its clock whenever the frameloop is paused
+  const elapsed = useRef(0);
 
-  useFrame(({ clock }, delta) => {
+  useFrame((_, delta) => {
     if (geometryRef.current && meshRef.current) {
-      const time = clock.getElapsedTime();
+      elapsed.current += delta;
+      const time = elapsed.current;
       const geometry = geometryRef.current;
 
       const position = geometry.attributes.position;
