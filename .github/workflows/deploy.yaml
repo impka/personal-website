@@ -27,9 +27,6 @@ jobs:
       - name: Build Next.js app
         run: npm run build
 
-      - name: Add CNAME (custom domain)
-        run: echo 'impkar.com' > ./out/CNAME
-
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
