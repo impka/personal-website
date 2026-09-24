@@ -38,14 +38,14 @@ export default function Bulb({onLoaded}: {onLoaded: () => void}) {
         config: { mass: 1, tension: 170, friction: 26 },
     }))
 
-    const bind = useDrag(({ movement: [x] }) => {
-        api.start({ rotY: x / 100 })
-    })
+    const bind = useDrag(({ offset: [x], tap }) => {
+        if (tap) setValue((prev) => !prev)
+        else api.start({ rotY: x / 100 })
+    }, { filterTaps: true })
 
     return (
         <a.group 
             {...bind()} 
-            onClick={() => setValue((prev) => !prev)}
             rotation-y={spring.rotY} 
             position={[-20, 10, 20]}>
             <Center>
