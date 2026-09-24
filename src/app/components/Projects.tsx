@@ -51,6 +51,7 @@ function DragCarousel() {
     return (
       <div className="h-screen w-[80vw] flex flex-row items-center justify-center overflow-hidden bg-[#F9F9F9] dark:bg-[#030303] rounded-[50] shadow-xl transition-colors duration-500 ease-in-out">
         <div className="flex items-center justify-center relative w-[40%] max-w-4xl overflow-hidden">
+          <AnimatePresence mode="wait">
           <motion.div
             key={projects[activeIndex].id}
             drag="y"
@@ -70,6 +71,7 @@ function DragCarousel() {
               height={500}
             />
           </motion.div>
+          </AnimatePresence>
         </div>
 
         <div className="mt-6 flex flex-col gap-3">
@@ -77,8 +79,10 @@ function DragCarousel() {
             <button
               key={i}
               onClick={() => setActiveIndex(i)}
-              className={`h-2 w-2 rounded-full transition-all ${
-                i === activeIndex ? "bg-[#090909] dark:bg-white h-6" : "bg-gray-500"
+              aria-label={`Show project ${i + 1}`}
+              aria-current={i === activeIndex}
+              className={`w-2 rounded-full transition-all ${
+                i === activeIndex ? "bg-[#090909] dark:bg-white h-6" : "bg-gray-500 h-2"
               }`}
             />
           ))}
@@ -98,7 +102,7 @@ function DragCarousel() {
                 {projects[activeIndex].title}
               </h2>
               <p>{projects[activeIndex].desc}</p>
-              <a href={projects[activeIndex].link}>Link to GitHub</a>
+              <a href={projects[activeIndex].link} target="_blank" rel="noopener noreferrer">Link to GitHub</a>
             </motion.div>
           </AnimatePresence>
         </div>
@@ -108,7 +112,7 @@ function DragCarousel() {
 
 function Projects(){
     return (
-        <div id="projects" className="h-screen place-items-center bg-transparent">
+        <div id="projects" className="h-screen grid place-items-center bg-transparent">
             <DragCarousel/>
         </div>
     )
