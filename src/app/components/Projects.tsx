@@ -49,8 +49,8 @@ function DragCarousel() {
     };
   
     return (
-      <div className="h-screen w-[80vw] flex flex-row items-center justify-center overflow-hidden bg-[#F9F9F9] dark:bg-[#030303] rounded-[50] shadow-xl transition-colors duration-500 ease-in-out">
-        <div className="flex items-center justify-center relative w-[40%] max-w-4xl overflow-hidden">
+      <div className="min-h-[80vh] w-[90vw] py-8 flex flex-col items-center justify-center overflow-hidden lg:h-screen lg:w-[80vw] lg:py-0 lg:flex-row bg-[#F9F9F9] dark:bg-[#030303] rounded-[50] shadow-xl transition-colors duration-500 ease-in-out">
+        <div className="flex items-center justify-center relative w-full lg:w-[40%] max-w-4xl overflow-hidden">
           <AnimatePresence mode="wait">
           <motion.div
             key={projects[activeIndex].id}
@@ -74,21 +74,21 @@ function DragCarousel() {
           </AnimatePresence>
         </div>
 
-        <div className="mt-6 flex flex-col gap-3">
+        <div className="mt-6 flex flex-row gap-3 lg:flex-col">
           {projects.map((_, i) => (
             <button
               key={i}
               onClick={() => setActiveIndex(i)}
               aria-label={`Show project ${i + 1}`}
               aria-current={i === activeIndex}
-              className={`w-2 rounded-full transition-all ${
-                i === activeIndex ? "bg-[#090909] dark:bg-white h-6" : "bg-gray-500 h-2"
+              className={`rounded-full transition-all ${
+                i === activeIndex ? "bg-[#090909] dark:bg-white h-2 w-6 lg:h-6 lg:w-2" : "bg-gray-500 h-2 w-2"
               }`}
             />
           ))}
         </div>
 
-        <div className="m-8 text-center w-[50%]">
+        <div className="m-6 text-center lg:m-8 lg:w-[50%]">
           <AnimatePresence mode="wait">
             <motion.div
               key={projects[activeIndex].id}
@@ -112,7 +112,7 @@ function DragCarousel() {
 
 function Projects(){
     return (
-        <div id="projects" className="h-screen grid place-items-center bg-transparent">
+        <div id="projects" className="min-h-screen grid place-items-center bg-transparent">
             <DragCarousel/>
         </div>
     )
