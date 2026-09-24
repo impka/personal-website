@@ -54,7 +54,6 @@ export default function Bulb({onLoaded}: {onLoaded: () => void}) {
                     scale={30}
                 />
                 <pointLight 
-                    castShadow 
                     intensity={value ? 5000: 0} 
                     distance={1000} 
                     color="#ffe991" />

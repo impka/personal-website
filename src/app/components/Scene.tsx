@@ -4,7 +4,7 @@ import { Environment } from "@react-three/drei"
 import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from 'three';
 import Bulb from './Bulb'
-import { useRef, useContext } from "react";
+import { useRef, useContext, useEffect, useState } from "react";
 import LightContext from "../contexts/LightContext"
 import { LightContextType } from "../contexts/LightContext"
 import { createNoise3D } from "simplex-noise";
@@ -16,11 +16,10 @@ function WavyPlane() {
   const {value} = useContext<LightContextType>(LightContext)
   // plane geometry
   const geometryRef = useRef<THREE.PlaneGeometry | null>(null)
-  const clock = useRef(new THREE.Clock())
 
-  useFrame(() => {
+  useFrame(({ clock }, delta) => {
     if(geometryRef.current && meshRef.current){
-      const time = clock.current.getElapsedTime()
+      const time = clock.getElapsedTime()
       const geometry = geometryRef.current
 
       const position = geometry.attributes.position
@@ -40,7 +39,8 @@ function WavyPlane() {
       }
 
       position.needsUpdate = true
-      meshRef.current.rotation.z += 0.0001
+      // scale by frame time so the spin speed doesn't depend on refresh rate
+      meshRef.current.rotation.z += 0.006 * delta
     }
   })
 
@@ -61,12 +61,23 @@ function WavyPlane() {
 
 export default function Scene({onLoaded}: { onLoaded: ()=>void}) {
   const {value} = useContext<LightContextType>(LightContext)
+  const containerRef = useRef<HTMLDivElement>(null)
+  const [visible, setVisible] = useState(true)
+
+  // stop rendering once the scene is scrolled out of view
+  useEffect(() => {
+    if (!containerRef.current) return
+    const observer = new IntersectionObserver(([entry]) => setVisible(entry.isIntersecting))
+    observer.observe(containerRef.current)
+    return () => observer.disconnect()
+  }, [])
+
   return (
-    <div className="h-[150vh] relative z-0">
-      <Canvas shadows camera={{position: [0, 0, 100], fov:50}}>
+    <div ref={containerRef} className="h-[150vh] relative z-0">
+      <Canvas frameloop={visible ? "always" : "never"} camera={{position: [0, 0, 100], fov:50}}>
         <Bulb onLoaded={onLoaded}/>
         <WavyPlane/>
-        <Environment preset="studio" background={false} environmentIntensity={value ? 2 : 0.5}/>
+        <Environment files="/studio_small_03_1k.hdr" background={false} environmentIntensity={value ? 2 : 0.5}/>
       </Canvas>
 
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-b from-transparent to-[#E0E0E0] dark:to-black transition-colors duration-500 ease-in-out" />
