@@ -6,7 +6,7 @@ function Loading(){
             <h1><i>Loading</i></h1>
             <Image 
                 src="/loading.svg" 
-                alt="picture of gears" 
+                alt="" 
                 width={50} 
                 height={50}/>
         </div>

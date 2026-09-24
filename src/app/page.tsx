@@ -2,7 +2,7 @@
 
 import { FaGithub, FaSpotify } from "react-icons/fa";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Scene from "./components/Scene"
 import AboutMe from "./components/AboutMe";
@@ -20,6 +20,13 @@ export default function Home() {
     () => typeof document !== "undefined" && !document.documentElement.classList.contains("dark")
   );
   const [loading, setLoading] = useState(true);
+  const handleLoaded = useCallback(() => setLoading(false), []);
+
+  // don't leave the overlay up forever if WebGL or the model fails to load
+  useEffect(() => {
+    const timeout = setTimeout(handleLoaded, 8000);
+    return () => clearTimeout(timeout);
+  }, [handleLoaded]);
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", !on);
@@ -35,7 +42,7 @@ export default function Home() {
         <AnimatePresence>
           { loading && (
             <motion.div 
-              className="fixed h-screen inset-0 flex items-center justify-center z-50 bg-[#000000]"
+              className="fixed inset-0 flex items-center justify-center z-50 bg-[#000000]"
               initial={{ opacity: 1 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -46,7 +53,7 @@ export default function Home() {
           )}
         </AnimatePresence>
         <div className="h-screen ">
-          <Scene onLoaded={() => setLoading(false)}/>
+          <Scene onLoaded={handleLoaded}/>
           <div className="flex flex-row items-center justify-center absolute top-[40vh] right-[60vh]">
             <div className="pr-[2vh]">
               <h1 className="text-[7vh]">Ethan Zhou</h1>
