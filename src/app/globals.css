@@ -14,7 +14,7 @@
 
 @theme {
   --animate-wiggle: wiggle 0.15s ease-in-out 8;
-  --animate-twinkle: twinkle 2.8s ease-in-out infinite;
+  --animate-twinkle: twinkle 6s ease-in-out infinite;
 
   @keyframes wiggle {
     0%,
@@ -26,16 +26,19 @@
     }
   }
 
+  /* a letter briefly catches the bulb's light; --name-color and --twinkle are set on the name */
   @keyframes twinkle {
     0%,
-    70%,
+    82%,
     100% {
-      opacity: 0.3;
-      transform: scale(0.55) rotate(0deg);
+      color: var(--name-color);
+      text-shadow: 0 0 0 transparent;
     }
-    35% {
-      opacity: 1;
-      transform: scale(1) rotate(90deg);
+    90% {
+      color: var(--twinkle);
+      text-shadow:
+        0 0 0.12em var(--twinkle),
+        0 0 0.4em var(--twinkle);
     }
   }
 }
