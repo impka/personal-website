@@ -15,6 +15,11 @@ export default function Bulb({ onLoaded }: { onLoaded: () => void }) {
   const { scene } = useGLTF("/light_bulb.glb");
   // on narrow screens, center the bulb under the heading instead of off to the left
   const compact = useThree((state) => state.size.width < 1024);
+  // world-space width visible at the bulb's depth, so the bulb can sit at a fixed share of the screen
+  const viewWidth = useThree(
+    (state) =>
+      state.viewport.getCurrentViewport(state.camera, [0, 0, 20]).width,
+  );
 
   useEffect(() => {
     scene.traverse((child) => {
@@ -53,7 +58,7 @@ export default function Bulb({ onLoaded }: { onLoaded: () => void }) {
     <a.group
       {...bind()}
       rotation-y={spring.rotY}
-      position={compact ? [0, 6, 20] : [-20, 10, 20]}
+      position={compact ? [0, 6, 20] : [-viewWidth * 0.25, 10, 20]}
     >
       <Center>
         <primitive object={scene} scale={compact ? 24 : 30} />
