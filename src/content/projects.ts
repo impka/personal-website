@@ -2,6 +2,22 @@ import type Project from "@/types/project";
 
 const projects: Project[] = [
   {
+    id: "uav-detection",
+    title: "UAV Detection Paper",
+    year: 2025,
+    description:
+      "A research paper on detecting drones from their radar signatures. A ResNet18, fine-tuned from ImageNet weights, classifies micro-Doppler spectrograms from the Open Radar Dataset, which has only 50 UAV tracks out of 350. To make up for the small, unbalanced dataset, the model is pretrained on 5,000 synthetic radar samples generated with RadarSimPy and trained with UAV augmentation and focal loss, raising the F1 score from 40.2% to 52.77%.",
+    stack: ["Python", "PyTorch", "ResNet18", "RadarSimPy"],
+    image: {
+      src: "/project_images/uav-pipeline.webp",
+      width: 1030,
+      height: 630,
+      alt: "Pipeline diagram from the paper: a ResNet18 pretrained on synthetic radar data is trained on the Open Radar Dataset over 5 folds, then tested",
+      fit: "contain",
+    },
+    links: [{ label: "Read the paper", href: "/UAV_paper.pdf" }],
+  },
+  {
     id: "waldo",
     title: "Where's Waldo Website",
     year: 2025,
