@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useImperativeHandle, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import about from "@/content/about";
 
@@ -16,11 +16,15 @@ const CLOSE_DELAY = 220;
 // room the card needs above the name on desktop before it flips below instead
 const SPACE_NEEDED_ABOVE = 260;
 
-export default function NameCard() {
+// lets other controls (the "About" nav link) open the card
+export interface NameCardHandle {
+  open: () => void;
+}
+
+export default function NameCard({ ref }: { ref?: React.Ref<NameCardHandle> }) {
   const [open, setOpen] = useState(false);
   const [below, setBelow] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
-  const buttonRef = useRef<HTMLButtonElement>(null);
   const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const lastPointer = useRef<string>("mouse");
 
@@ -41,15 +45,22 @@ export default function NameCard() {
     if (e.pointerType === "mouse") schedule(false, CLOSE_DELAY);
   };
 
+  useImperativeHandle(ref, () => ({
+    open: () => {
+      clearTimeout(timer.current);
+      show();
+    },
+  }));
+
   useEffect(() => () => clearTimeout(timer.current), []);
 
   // close on Esc, and on a tap or click anywhere else
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => {
+      // focus stays where it is (the name or the About link); moving it to the name would reopen the card
       if (e.key !== "Escape") return;
       setOpen(false);
-      buttonRef.current?.focus();
     };
     const onPointerDown = (e: PointerEvent) => {
       if (!wrapperRef.current?.contains(e.target as Node)) setOpen(false);
@@ -81,7 +92,6 @@ export default function NameCard() {
     >
       <h1 className="text-5xl leading-none lg:text-[8vh]">
         <button
-          ref={buttonRef}
           type="button"
           aria-expanded={open}
           aria-controls="about-card"

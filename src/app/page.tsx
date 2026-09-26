@@ -2,13 +2,12 @@
 
 import { FaGithub, FaSpotify } from "react-icons/fa";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Scene from "./components/Scene";
-import AboutMe from "./components/AboutMe";
 import Projects from "./components/Projects";
 import Loading from "./components/Loading";
-import NameCard from "./components/NameCard";
+import NameCard, { type NameCardHandle } from "./components/NameCard";
 import Link from "next/link";
 
 import LightContext from "./contexts/LightContext";
@@ -22,6 +21,7 @@ export default function Home() {
       !document.documentElement.classList.contains("dark"),
   );
   const [loading, setLoading] = useState(true);
+  const nameCard = useRef<NameCardHandle>(null);
   const handleLoaded = useCallback(() => setLoading(false), []);
 
   // don't leave the overlay up forever if WebGL or the model fails to load
@@ -63,7 +63,7 @@ export default function Home() {
           <Scene onLoaded={handleLoaded} />
           {/* on desktop the text starts at the horizontal center; Bulb.tsx keeps the bulb at 25% width */}
           <div className="absolute inset-x-0 top-[10vh] flex flex-col items-center gap-4 lg:inset-x-auto lg:left-1/2 lg:top-[45vh] lg:-translate-y-1/2 lg:items-start lg:gap-[2.5vh]">
-            <NameCard />
+            <NameCard ref={nameCard} />
             <div className="flex flex-row items-center gap-4 lg:gap-[1.5vh]">
               <a
                 href="https://github.com/impka"
@@ -92,9 +92,14 @@ export default function Home() {
             </div>
             <ul className="flex flex-row gap-6 text-xl lg:gap-[3vh] lg:text-[2.8vh]">
               <li>
-                <Link className="underline-hover" href="#about-me">
+                <button
+                  type="button"
+                  aria-controls="about-card"
+                  onClick={() => nameCard.current?.open()}
+                  className="underline-hover cursor-pointer"
+                >
                   About
-                </Link>
+                </button>
               </li>
               <li>
                 <Link className="underline-hover" href="#projects">
@@ -112,7 +117,6 @@ export default function Home() {
             </ul>
           </div>
         </div>
-        <AboutMe />
         <Projects />
       </div>
     </LightContext.Provider>
