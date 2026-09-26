@@ -1,30 +1,27 @@
 import Image from "next/image";
+import SectionCard from "./SectionCard";
 
 function AboutMe() {
   return (
-    <div
-      id="about-me"
-      className="relative min-h-screen grid place-items-center bg-transparent z-3"
-    >
-      <div className="min-h-[80vh] w-[90vw] p-8 flex flex-col items-center gap-10 justify-center lg:w-[80vw] lg:p-0 lg:flex-row bg-[#F9F9F9] dark:bg-[#030303] rounded-[50] shadow-xl transition-colors duration-500 ease-in-out">
-        <div className="relative h-[30vh] w-[30vh] shrink-0 lg:h-[40vh] lg:w-[40vh] rounded-xl bg-[#00FF00] overflow-hidden">
-          <Image
-            fill
-            src="/snowboarding.webp"
-            alt="picture of me"
-            className="object-cover"
-          />
-        </div>
-        <div className="lg:w-[35%] prose prose-lg prose-slate dark:prose-invert">
-          <h1 className="text-xl font-bold pl-2">Hi!</h1>
-          <p className="text-lg">
+    <SectionCard id="about-me" title="About">
+      <div className="grid gap-6 items-center lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-10">
+        <Image
+          src="/snowboarding.webp"
+          width={1276}
+          height={958}
+          alt="My snowboard and boots on a ski slope, with mountains behind"
+          className="w-full max-w-md aspect-square object-cover rounded-2xl"
+        />
+        <div className="grid gap-3 max-w-prose">
+          <p className="text-2xl font-light">Hi!</p>
+          <p className="text-lg text-neutral-700 dark:text-neutral-300">
             {
               "I'm Ethan, a dude who likes doing cool stuff. My interests are pretty broad, since I can get pretty invested in things relatively quickly, but in general, my primary motivation is making the world a more enjoyable place to exist in."
             }
           </p>
         </div>
       </div>
-    </div>
+    </SectionCard>
   );
 }
 
