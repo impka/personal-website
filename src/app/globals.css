@@ -26,11 +26,6 @@
   }
 }
 
-.non-draggable {
-  user-select: none;
-  -webkit-user-drag: none;
-}
-
 @layer utilities {
   .underline-hover {
     @apply relative inline-block
