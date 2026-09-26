@@ -8,6 +8,7 @@ import Scene from "./components/Scene";
 import AboutMe from "./components/AboutMe";
 import Projects from "./components/Projects";
 import Loading from "./components/Loading";
+import NameCard from "./components/NameCard";
 import Link from "next/link";
 
 import LightContext from "./contexts/LightContext";
@@ -62,7 +63,7 @@ export default function Home() {
           <Scene onLoaded={handleLoaded} />
           {/* on desktop the text starts at the horizontal center; Bulb.tsx keeps the bulb at 25% width */}
           <div className="absolute inset-x-0 top-[10vh] flex flex-col items-center gap-4 lg:inset-x-auto lg:left-1/2 lg:top-[45vh] lg:-translate-y-1/2 lg:items-start lg:gap-[2.5vh]">
-            <h1 className="text-5xl leading-none lg:text-[8vh]">Ethan Zhou</h1>
+            <NameCard />
             <div className="flex flex-row items-center gap-4 lg:gap-[1.5vh]">
               <a
                 href="https://github.com/impka"
